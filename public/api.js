@@ -1,25 +1,27 @@
 /* CRUD API operations with Axios */
 
+const port = process.env.PORT || 3000
+
 // GET
 async function getAllTasks() {
-    const tasksData = await axios.get('http://localhost:3000/tasks')
+    const tasksData = await axios.get(`${port}/tasks`)
     return tasksData.data
 }
 // POST
 async function postTask(text) {
-    const res = await axios.post('http://localhost:3000/tasks', { text })
+    const res = await axios.post(`${port}/tasks`, { text })
     console.log(res);
     return res.data
 }
 // PUT
 async function putTask(task) {
-    const res = await axios.put('http://localhost:3000/tasks', { task })
+    const res = await axios.put(`${port}/tasks`, { task })
     console.log(res);
     return res.data
 }
 // DELETE
 async function deleteTask(taskId) {
-    const res = await axios.delete(`http://localhost:3000/tasks/${taskId}`)
+    const res = await axios.delete(`${port}/tasks/${taskId}`)
     console.log(res);
     return res.data
 
