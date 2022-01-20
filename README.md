@@ -1,4 +1,4 @@
-**This project will be soon converted to React and a backEnd will be added.**
+**This project will be soon converted to React.**
 
 *Link to deployed version on Heroku:*
 https://list-ninja.herokuapp.com/
