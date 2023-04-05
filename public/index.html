@@ -1,89 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <script src="https://kit.fontawesome.com/9e08100192.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/9e08100192.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="shortcut icon" href="./images/list-ninja-favicon.ico" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="./images/list-ninja-favicon.ico"
+      type="image/x-icon"
+    />
+    <script defer src="./api.js"></script>
+    <script defer src="./app.js"></script>
+    <script defer src="./helpers.js"></script>
     <title>List Ninja</title>
-</head>
-<body>
-<!-- Navbar -->
+  </head>
+  <body>
+    <!-- Navbar -->
     <nav>
-        <div class="left-wrapper">
-            <div class="left-wrapper__burger">
-                <i class="fas fa-bars fa-lg"></i>
-            </div>
-            <div class="left-wrapper__logo">
-                <i class="fas fa-user-ninja fa-3x"></i>
-            </div>
-            <h1 class="left-wrapper__headline">List Ninja</h1>
+      <div class="left-wrapper">
+        <div class="left-wrapper__burger">
+          <i class="fas fa-bars fa-lg"></i>
         </div>
-        <div class="right-wrapper">
-            <div class="right-wrapper__search">
-                <i class="fas fa-search fa-lg"></i>
-            </div>
-            <div class="right-wrapper__settings">
-                <i class="fas fa-cog fa-lg"></i>
-                <div class="settings-modal hide">
-                    <p>Change appearance</p>
-                    <div class="settings-modal__toggle-display">
-                        <i class="fas fa-adjust fa-3x"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="right-wrapper__notifications">
-                <i class="fas fa-bell fa-lg"></i>
-            </div>
+        <div class="left-wrapper__logo">
+          <i class="fas fa-user-ninja fa-3x"></i>
         </div>
+        <h1 class="left-wrapper__headline">List Ninja</h1>
+      </div>
+      <div class="right-wrapper">
+        <div class="right-wrapper__search">
+          <i class="fas fa-search fa-lg"></i>
+        </div>
+        <div class="right-wrapper__settings">
+          <i class="fas fa-cog fa-lg"></i>
+          <div class="settings-modal hide">
+            <p>Change appearance</p>
+            <div class="settings-modal__toggle-display">
+              <i class="fas fa-adjust fa-3x"></i>
+            </div>
+          </div>
+        </div>
+        <div class="right-wrapper__notifications">
+          <i class="fas fa-bell fa-lg"></i>
+        </div>
+      </div>
     </nav>
     <h2 class="welcome-message">Welcome to your dojo.</h2>
-<!-- Edit modal -->
+    <!-- Edit modal -->
     <div class="edit-modal-wrapper hide">
-        <h4>Change your pledge?</h4>
-        <form id="edit-modal-form" onsubmit="handleUpdate(event)">
-            <label for="edit-text"></label>
-            <input type="text" name="edit-text" class="edit-modal-form__text">
-            <input type="hidden" name="task-id" id="task-id">
-            <button type="submit" class="edit-modal-form__submit-btn">Pledge again</button>
-        </form>
+      <h4>Change your pledge?</h4>
+      <form id="edit-modal-form" onsubmit="handleUpdate(event)">
+        <label for="edit-text"></label>
+        <input type="text" name="edit-text" class="edit-modal-form__text" />
+        <input type="hidden" name="task-id" id="task-id" />
+        <button type="submit" class="edit-modal-form__submit-btn">
+          Pledge again
+        </button>
+      </form>
     </div>
-<!-- List starts here -->
+    <!-- List starts here -->
     <main>
-        <div class="list">
-            <div class="list__header">
-                <h3 class="list__header__headline">Perform these tasks, Ninja!</h3>
-            </div>
-            <div class="list__body">
-                <!-- Tasks -->
-            </div>
+      <div class="list">
+        <div class="list__header">
+          <h3 class="list__header__headline">Perform these tasks, Ninja!</h3>
         </div>
+        <div class="list__body">
+          <!-- Tasks -->
+        </div>
+      </div>
     </main>
     <footer>
-        <div class="button-wrapper">
-            <i class="fas fa-plus fa-3x"></i>
-        </div>
-        <div class="add-task-modal hide">
-            <i class="fas fa-user-ninja fa-3x"></i>
-            <h4>Sensei demands a new task!</h4>
-            <p>He does not take promises lightly.</p>
-            <form id="add-task-form">
-                <input type="text" name="task-text" id="task-text" required placeholder="Show him your skills">
-                <button type="submit">Pledge</button>
-            </form>
-        </div>
-        <p>App by Yarden Tal for ITC Fullstack course</p>
+      <div class="button-wrapper">
+        <i class="fas fa-plus fa-3x"></i>
+      </div>
+      <div class="add-task-modal hide">
+        <i class="fas fa-user-ninja fa-3x"></i>
+        <h4>Sensei demands a new task!</h4>
+        <p>He does not take promises lightly.</p>
+        <form id="add-task-form">
+          <input
+            type="text"
+            name="task-text"
+            id="task-text"
+            required
+            placeholder="Show him your skills"
+          />
+          <button type="submit">Pledge</button>
+        </form>
+      </div>
+      <p>App by Yarden Tal for ITC Fullstack course</p>
     </footer>
-
-    <script src="./api.js"></script>
-    <script src="./app.js"></script>
-    <script src="./helpers.js"></script>
-</body>
+  </body>
 </html>
