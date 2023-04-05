@@ -65,7 +65,7 @@ const renderTaskList = () => {
 `;
     })
     .join("");
-  document.querySelector(".list__body").innerHTML = taskHtml;
+  document.querySelector(".list__body").textContent = taskHtml;
 };
 
 /* Update */
@@ -83,7 +83,6 @@ async function handleUpdate(ev) {
   const taskIndex = tasks.findIndex(task => task.id === taskId);
   const taskToUpdate = tasks[taskIndex];
   taskToUpdate.text = ev.target.elements[0].value;
-  console.log(taskToUpdate);
   const updatedTask = await putTask(taskToUpdate);
   tasks[taskIndex] = updatedTask;
   ev.target.reset();
@@ -98,7 +97,6 @@ async function handleDelete(taskId) {
   const tasksAfterDelete = await deleteTask(taskToDelete.id);
   tasks.splice(0, tasks.length);
   tasks.push(...tasksAfterDelete);
-  console.log(tasks);
   renderTaskList();
 }
 
@@ -117,6 +115,5 @@ async function init() {
   const arr = await getAllTasks();
   tasks.push(...arr);
   renderTaskList();
-  console.log(tasks);
 }
 init();

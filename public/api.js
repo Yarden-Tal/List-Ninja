@@ -2,25 +2,37 @@
 
 // GET
 async function getAllTasks() {
-  console.log(123);
-  const tasksData = await axios.get("/tasks");
-  return tasksData.data;
+  try {
+    const tasksData = await axios.get("/tasks");
+    return tasksData.data;
+  } catch (e) {
+    console.error(e);
+  }
 }
 // POST
 async function postTask(text) {
-  const res = await axios.post("/tasks", { text });
-  console.log(res);
-  return res.data;
+  try {
+    const res = await axios.post("/tasks", { text });
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
 }
 // PUT
 async function putTask(task) {
-  const res = await axios.put("/tasks", { task });
-  console.log(res);
-  return res.data;
+  try {
+    const res = await axios.put("/tasks", { task });
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
 }
 // DELETE
 async function deleteTask(taskId) {
-  const res = await axios.delete(`/tasks/${taskId}`);
-  console.log(res);
-  return res.data;
+  try {
+    const res = await axios.delete(`/tasks/${taskId}`);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
 }
